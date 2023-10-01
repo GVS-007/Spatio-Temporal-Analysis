@@ -1,36 +1,57 @@
-# Spatio-Temporal Analysis for Water Stresses
+# Spatio-Temporal Deep Learning Analysis for Water Stresses Detection
 
 ## Introduction
-Abiotic stresses, particularly water stress, significantly impact crop growth and yield. Early and continual monitoring of water stress can assist in mitigating its adverse effects. This repository presents a non-invasive deep learning framework that predicts water stresses by analyzing the long-term progression of crops. The framework utilizes a novel Random Sequence Splicing (RSS) algorithm to handle limited training data and high class skewness. It also employs the ConvLSTM architecture to learn spatio-temporal patterns in progressive plant growth cycles.
+Water stress is a crucial abiotic factor that significantly hampers crop growth and yield. Timely and consistent monitoring can pave the way for necessary interventions, ensuring optimal crop health. This repository introduces a non-invasive deep learning framework designed to predict water stresses in crops by analyzing their long-term growth progression. At its core, the framework leverages the ConvLSTM architecture for understanding spatio-temporal patterns and a novel Random Sequence Splicing (RSS) algorithm to mitigate the challenges posed by limited and skewed training data.
 
-## Key Results
-- Achieved an accuracy of 81.5% despite an imbalance ratio of 1.83 in the original dataset.
-- Attained an impressive accuracy of 74.6% on down-sampled sequences, while using only 10k parameters.
+## Highlights
+- **Deep Learning Framework**: Uses ConvLSTM to capture the spatio-temporal patterns in sequential plant growth data.
+- **RSS Algorithm**: A proprietary technique that assists in data augmentation, addressing data scarcity and imbalance issues.
+- **Impressive Results**: Despite the data imbalance, the model boasts an accuracy of 81.5%. Even with down-sampled sequences, it retains an accuracy of 74.6% with a compact model size of just 10k parameters.
 
 ## Dataset
-Experiments and tests were conducted using the Eschikon Plant Stress Phenotyping Dataset. This dataset is a public resource containing spatio-temporal-spectral data of sugar beet crop growth under various environmental factors.
+The core evaluations were carried out using the *Eschikon Plant Stress Phenotyping Dataset*. This public dataset encompasses spatio-temporal-spectral data, detailing the growth of sugar beet crops under varied environmental conditions.
 
-## Files and Directories
-- **Notebooks**:
-  - `BTP (2).ipynb`
-  - `BTP_CONV (1).ipynb`
-- **Python Scripts**:
-  - `CNN_LSTM.py`
-  - `ConvLSTM.py`
-- **Dataset**:
-  - `Readings.xlsx`
-- **Models Saved**
-  - `Conv_LSTM`
+## Repository Structure
 
+### 📔 Notebooks
+- `BTP (2).ipynb`: EDA, Preprocessing,RSS,Modeling of CNN_LSTM, Training, ablation studies and Testing
+- `BTP_CONV (1).ipynb`: EDA, Preprocessing, RSS, Modeling of ConvLSTM, Training, ablation studies and Testing
+
+### 📜 Python Scripts
+- `CNN_LSTM.py`: Script to encompassing the CNN_LSTM model architecture and related functionalities.
+- `ConvLSTM.py`: Script encompassing the ConvLSTM model architecture and related functionalities.
+
+### 📂 Readings
+- `Readings.xlsx`
+
+### 🌐 Models
+- `Conv_LSTM`: Saved model files post-training. Ready for deployment or further evaluations.
 
 ## Preprocessing
-A detailed preprocessing pipeline has been followed to convert the image dataset into sequential data. This includes image conversion, center cropping, sequence generation using RSS, and various augmentations using the Albumentations Library.
+The preprocessing pipeline is meticulously crafted to transform the raw image dataset into a structured sequential format. It encompasses:
+- Image conversion processes.
+- Center cropping techniques to focus on the region of interest.
+- Sequence generation using the RSS technique.
+- Data augmentation using the Albumentations Library to enrich the dataset variability.
 
-## Training
-Two separate processing pipelines were utilized, one employing RSS and the other without. The adam optimizer was used with a learning rate of 0.001 and binary cross-entropy as the loss criterion.
+## Training Pipeline
+Two distinct pipelines were tested: 
+1. Incorporating RSS for data augmentation.
+2. Without RSS.
 
-## Evaluation
-Evaluation metrics such as Accuracy, Precision, Recall, and F-1 score were used to assess the model's performance.
+Model training employed the Adam optimizer with a learning rate set at 0.001. Binary cross-entropy was chosen as the loss criterion due to the binary classification nature of the task.
+
+## Evaluation Metrics
+Performance evaluation was comprehensive, covering:
+- Accuracy: Overall proportion of correct predictions.
+- Precision: Accuracy of positive predictions.
+- Recall: Coverage of actual positive samples.
+- F-1 Score: Harmonic mean of Precision and Recall.
+
+## Key Takeaways
+- The ConvLSTM-RSS combo offers a promising solution for early and consistent water stress detection in crops.
+- The RSS algorithm effectively addresses data scarcity and imbalance, paving the way for robust model performance.
+- The early detection capability, even with shorter image sequences, emphasizes the model's efficiency and potential for real-world applications.
 
 ## Conclusion
-The study showcases the potential of using the ConvLSTM framework and the RSS algorithm in forecasting water stress levels in agriculture. The results indicate that early and continual monitoring can be beneficial for agricultural practices and food security.
+Through this study, we've illustrated the profound potential of integrating the ConvLSTM framework with the RSS algorithm for predicting water stress levels in agriculture. Our results underscore the importance of continual monitoring and proactive interventions, spotlighting a path forward for sustainable agricultural practices and ensuring food security.
